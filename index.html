@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="./leaflet/leaflet.css">
+    <link rel="stylesheet" href="./selection_markers_map.css">
+</head>
+<body>
+
+<div id="mapid-menu">
+    <div class="mapid-menu-item"></div> <!--будет тут группы с карты в этом элементе если выбрана группа то добавляется класс active-->
+</div>
+<div id="mapid"></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="./leaflet/leaflet.js"></script>
+<script src="selection_markers_map.js"></script>
+<script>
+    selectionMarkersMap({
+            id: 'mapid', // айди в которую будет выводитсч карта
+            idMenu: 'mapid-menu', // айди меню
+            menuItem: 'mapid-menu-item', // класс элемента в которой будет обвернуты группы
+            center: [46.4596064, 30.7290318], // центер карты
+            title: 'Наша фирма', // тултип иконки в центре
+            iconUrl: './icons/icon_map.png', // ссылка на иконку в центре
+            iconSize: [54, 62], // размер иконок
+            zoom: 13, // маштаб карты
+            accessToken: 'pk.eyJ1IjoidXI1Zm90IiwiYSI6ImNrbXM0ZWh3YjA3bHcydm84dGNwcDI4OWoifQ.6NfcOEj1cNFYh8rQwFaGNQ', // токен получать тутhttps://www.mapbox.com/studio/account/tokens/
+        },
+        [
+            { // список групп
+                name: 'Банк', // как будет отображаться в меню
+                default: true, // отображается ли по умолчанию
+                iconUrl: './icons/drugshop.png', // ссылка на иконку
+                icons: [
+                    {
+                        center: [46.4697064, 30.7291318], // координаты иконки
+                        title: '1А-банк1' // тултип
+                    },
+                    {
+                        center: [46.4606064, 30.7400318],
+                        title: '2А-банк1'
+                    },
+                ]
+            },
+            {
+                name: 'Банк2',
+                default: false,
+                iconUrl: './icons/school-2.png',
+                icons: [
+                    {
+                        center: [46.4486064, 30.7280318],
+                        title: '1А-банк2'
+                    },
+                    {
+                        center: [46.4616064, 30.7210318],
+                        title: '2А-банк2'
+                    },
+                ]
+            }
+        ],)
+</script>
+</body>
+</html>

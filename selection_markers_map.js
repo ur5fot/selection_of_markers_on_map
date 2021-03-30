@@ -74,6 +74,7 @@ function selectionMarkersMap(setting, groups) {
         var layerGroup = layer.layerGroup
 
         menu.activeClass = activeClass
+        menu.activeEl = activeEl
         var html = template(menu);
             $(html)
             .on('click', layerGroup, function (e) {

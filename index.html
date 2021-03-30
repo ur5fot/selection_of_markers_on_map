@@ -12,7 +12,7 @@
 </div>
 <script id="menu-map-template" type="text/x-handlebars-template">
         <div class="item-list-item">
-            <div class="item-row item-row-js {{#if default}} {{activeClass}} {{/if}}">
+            <div class="item-row {{activeEl}} {{#if default}} {{activeClass}} {{/if}}">
                 <div class="item-img"><img class="img" src="{{iconUrl}}"></div>
                 <div class="item-text">
                     <div class="item-text--text">{{name}}</div>

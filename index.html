@@ -8,20 +8,32 @@
 </head>
 <body>
 
-<div id="mapid-menu">
-    <div class="mapid-menu-item"></div> <!--будет тут группы с карты в этом элементе если выбрана группа то добавляется класс active-->
+<div id="menu-map">
 </div>
+<script id="menu-map-template" type="text/x-handlebars-template">
+        <div class="item-list-item">
+            <div class="item-row item-row-js {{#if default}} {{activeClass}} {{/if}}">
+                <div class="item-img"><img class="img" src="{{iconUrl}}"></div>
+                <div class="item-text">
+                    <div class="item-text--text">{{name}}</div>
+                </div>
+            </div>
+        </div>
+</script>
+
 <div id="mapid"></div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="./leaflet/leaflet.js"></script>
+<script src="./handlebars.min-v4.7.7.js"></script>
 <script src="selection_markers_map.js"></script>
 <script>
     selectionMarkersMap({
             id: 'mapid', // айди в которую будет выводитсч карта
-            idMenu: 'mapid-menu', // айди меню
-            menuItem: 'mapid-menu-item', // класс элемента в которой будет обвернуты группы
+            idMenu: 'menu-map', // айди шаблона меню
+            idMenuTemplate: 'menu-map-template', // айди шаблона меню
+            activeClass: 'active',
+            activeEl: 'item-row-js', // сласс элемента к торому будет добавляться активный класс
             center: [46.4596064, 30.7290318], // центер карты
-            title: 'Наша фирма', // тултип иконки в центре
             iconUrl: './icons/icon_map.png', // ссылка на иконку в центре
             iconSize: [54, 62], // размер иконок
             zoom: 13, // маштаб карты
@@ -29,36 +41,39 @@
         },
         [
             { // список групп
-                name: 'Банк', // как будет отображаться в меню
-                default: true, // отображается ли по умолчанию
                 iconUrl: './icons/drugshop.png', // ссылка на иконку
+                menu: {
+                    name: 'Банк', // как будет отображаться в меню
+                    iconUrl: './icons/drugshop.png', // ссылка на иконку  в меню
+                    default: true, // отображается ли по умолчанию
+                },
                 icons: [
                     {
                         center: [46.4697064, 30.7291318], // координаты иконки
-                        title: '1А-банк1' // тултип
                     },
                     {
                         center: [46.4606064, 30.7400318],
-                        title: '2А-банк1'
                     },
                 ]
             },
             {
-                name: 'Банк2',
-                default: false,
                 iconUrl: './icons/school-2.png',
+                menu: {
+                    name: 'Банк2',
+                    iconUrl: './icons/school-2.png',
+                    default: false,
+                },
                 icons: [
                     {
                         center: [46.4486064, 30.7280318],
-                        title: '1А-банк2'
                     },
                     {
                         center: [46.4616064, 30.7210318],
-                        title: '2А-банк2'
                     },
                 ]
             }
-        ],)
+        ],
+    )
 </script>
 </body>
 </html>
